@@ -13,7 +13,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 from test.pages.login_page import LoginPage
 
 
-
+test_data=[
+    {"username":"testing","password":"testing"},
+    {"username":"test","password":"test"}
+]
 
 
 
@@ -32,14 +35,18 @@ def driver():
     driver.quit()
 
 
+@pytest.mark.parametrize("user_data", test_data)
 
-def test_login(driver):
+
+def test_login(driver,user_data):
     login_page = LoginPage(driver)
     login_page.open_page("https://trytestingthis.netlify.app/")
     time.sleep(2)
-    login_page.enter_username("test")
+    username = user_data["username"]
+    password = user_data["password"]
+    login_page.enter_username(username)
     time.sleep(2)
-    login_page.enter_password("test")
+    login_page.enter_password(password)
     time.sleep(2)
     login_page.click_button()
     time.sleep(2)

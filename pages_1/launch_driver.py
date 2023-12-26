@@ -27,6 +27,7 @@ class Launch:
 
         googleSearch = self.driver.find_element(By.ID, "APjFqb")
         time.sleep(2)
+
         googleSearch.send_keys("https://trytestingthis.netlify.app/")
         main_url = "https://trytestingthis.netlify.app/"
         time.sleep(2)
